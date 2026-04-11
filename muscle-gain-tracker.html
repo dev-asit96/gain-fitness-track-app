@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAIN — 60→67kg Muscle Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: #222230;
+    --accent: #f5a623;
+    --accent2: #e8534a;
+    --green: #4ade80;
+    --blue: #60a5fa;
+    --purple: #a78bfa;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  /* ---- NAV ---- */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center;
+    padding: 0 24px; gap: 4px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-brand {
+    font-family: var(--font-display);
+    font-size: 26px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-right: 16px;
+    white-space: nowrap;
+    padding: 14px 0;
+  }
+  .nav-tab {
+    background: none; border: none;
+    color: var(--muted); font-family: var(--font-body);
+    font-size: 13px; font-weight: 500;
+    padding: 14px 14px;
+    cursor: pointer; white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all .2s;
+    letter-spacing: .3px;
+  }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ---- LAYOUT ---- */
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
+  .section { display: none; animation: fadeUp .3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ---- HERO ---- */
+  .hero {
+    background: linear-gradient(135deg, #1a1a28 0%, #111118 60%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: 'GAIN';
+    position: absolute; right: -20px; top: -20px;
+    font-family: var(--font-display);
+    font-size: 180px;
+    color: rgba(245,166,35,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 52px; letter-spacing: 3px;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--accent), #f7c967);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .hero p { color: var(--muted); font-size: 16px; max-width: 540px; }
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .hero-stat { }
+  .hero-stat .val {
+    font-family: var(--font-display);
+    font-size: 36px; color: var(--accent);
+    letter-spacing: 1px;
+  }
+  .hero-stat .lbl { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ---- CARDS ---- */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 16px; }
+  @media(max-width:768px) {
+    .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 36px; }
+    .hero-stats { gap: 20px; }
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+  }
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 18px; letter-spacing: 1.5px;
+    color: var(--accent); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-title .icon { font-size: 16px; }
+  .macro-bar-wrap { margin-bottom: 10px; }
+  .macro-row { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 13px; }
+  .macro-label { color: var(--muted); }
+  .macro-val { font-family: var(--font-mono); font-weight: 600; }
+  .bar { height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; margin-bottom: 10px; }
+  .bar-fill { height: 100%; border-radius: 3px; transition: width .6s cubic-bezier(.4,0,.2,1); }
+
+  /* ---- SECTION TITLE ---- */
+  .sec-title {
+    font-family: var(--font-display);
+    font-size: 32px; letter-spacing: 2px;
+    margin-bottom: 6px; color: var(--text);
+  }
+  .sec-sub { color: var(--muted); margin-bottom: 24px; font-size: 14px; }
+
+  /* ---- MEAL PLAN ---- */
+  .meal-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .meal-header {
+    display: grid;
+    grid-template-columns: 140px 1fr 80px 80px;
+    align-items: center;
+    padding: 14px 18px;
+    gap: 12px;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .meal-header:hover { background: rgba(245,166,35,0.05); }
+  .meal-time {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--accent);
+    font-weight: 600;
+  }
+  .meal-name { font-weight: 600; font-size: 14px; }
+  .meal-cal { font-family: var(--font-mono); font-size: 13px; color: var(--green); text-align:right; }
+  .meal-pro { font-family: var(--font-mono); font-size: 13px; color: var(--blue); text-align:right; }
+  .meal-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .meal-body.open { display: block; }
+  .meal-items { margin-top: 12px; }
+  .meal-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 13px;
+  }
+  .meal-item:last-child { border-bottom: none; }
+  .meal-item-name { color: var(--text); }
+  .meal-item-qty { color: var(--muted); font-family: var(--font-mono); font-size: 12px; }
+  .meal-item-cal { color: var(--green); font-family: var(--font-mono); font-size: 12px; width:60px; text-align:right; }
+  .meal-item-pro { color: var(--blue); font-family: var(--font-mono); font-size: 12px; width:50px; text-align:right; }
+
+  /* ---- CHECKLIST ---- */
+  .check-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-box {
+    width: 20px; height: 20px; border-radius: 5px;
+    border: 2px solid var(--border);
+    background: none; cursor: pointer; flex-shrink: 0;
+    transition: all .2s; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .check-box.done { background: var(--green); border-color: var(--green); }
+  .check-box.done::after { content: '✓'; color: #000; font-size: 12px; font-weight: 700; }
+  .check-label { flex: 1; font-size: 14px; }
+  .check-label.done { color: var(--muted); text-decoration: line-through; }
+
+  /* ---- PROGRESS TRACKER ---- */
+  .week-grid {
+    display: grid; grid-template-columns: repeat(7,1fr); gap: 6px;
+    margin-bottom: 10px;
+  }
+  .day-cell {
+    aspect-ratio: 1; border-radius: 6px;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--muted);
+    cursor: pointer; transition: all .2s;
+    flex-direction: column; gap: 2px;
+    border: 2px solid transparent;
+  }
+  .day-cell:hover { border-color: var(--accent); }
+  .day-cell.trained { background: rgba(74,222,128,0.15); }
+  .day-cell.trained .day-dot { background: var(--green); }
+  .day-cell.rest { background: rgba(96,165,250,0.08); }
+  .day-cell.today { border-color: var(--accent); }
+  .day-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); }
+
+  /* ---- WEIGHT LOG ---- */
+  .weight-input-row {
+    display: flex; gap: 10px; margin-bottom: 16px; align-items: flex-end;
+  }
+  .inp-group { flex: 1; }
+  .inp-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; display: block; text-transform: uppercase; letter-spacing: .8px; }
+  .inp {
+    width: 100%; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-family: var(--font-body); font-size: 14px;
+    padding: 10px 14px; border-radius: 8px; outline: none;
+    transition: border .2s;
+  }
+  .inp:focus { border-color: var(--accent); }
+  .btn {
+    background: var(--accent); color: #000;
+    border: none; font-family: var(--font-display);
+    font-size: 16px; letter-spacing: 1px;
+    padding: 11px 22px; border-radius: 8px; cursor: pointer;
+    transition: all .2s; white-space: nowrap;
+  }
+  .btn:hover { background: #f7c967; transform: translateY(-1px); }
+  .btn-outline {
+    background: none; border: 1px solid var(--border);
+    color: var(--muted); font-family: var(--font-body); font-size: 13px;
+    padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all .2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-danger {
+    background: none; border: 1px solid var(--accent2);
+    color: var(--accent2); font-size: 11px;
+    padding: 4px 10px; border-radius: 6px; cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-danger:hover { background: var(--accent2); color: #fff; }
+
+  /* weight chart */
+  #weightChart { width: 100%; height: 180px; }
+  .weight-log-list { max-height: 200px; overflow-y: auto; }
+  .weight-entry {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 13px;
+  }
+  .weight-entry:last-child { border-bottom: none; }
+  .weight-date { color: var(--muted); font-family: var(--font-mono); font-size: 12px; }
+  .weight-val { font-family: var(--font-mono); font-weight: 600; color: var(--accent); }
+  .weight-diff { font-size: 11px; font-family: var(--font-mono); }
+  .weight-diff.up { color: var(--green); }
+  .weight-diff.dn { color: var(--accent2); }
+
+  /* ---- PROGRESS BAR ---- */
+  .prog-wrap { margin-bottom: 16px; }
+  .prog-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
+  .prog-bar { height: 10px; border-radius: 5px; background: var(--border); overflow: hidden; }
+  .prog-fill { height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--accent), #f7c967); transition: width .6s; }
+
+  /* ---- SHAKES ---- */
+  .shake-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px; margin-bottom: 16px;
+  }
+  .shake-title {
+    font-family: var(--font-display); font-size: 20px;
+    color: var(--accent); letter-spacing: 1.5px; margin-bottom: 4px;
+  }
+  .shake-kcal { font-family: var(--font-mono); font-size: 12px; color: var(--green); margin-bottom: 14px; }
+  .shake-ingredients { margin-bottom: 12px; }
+  .shake-ing {
+    display: flex; justify-content: space-between;
+    padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 13px;
+  }
+  .shake-ing:last-child { border-bottom: none; }
+  .shake-how { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px; }
+
+  /* ---- MISTAKE / FACTOR CARDS ---- */
+  .factor-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px; margin-bottom: 10px;
+  }
+  .factor-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .factor-icon { font-size: 20px; }
+  .factor-title { font-weight: 600; font-size: 15px; }
+  .factor-impact { font-size: 12px; color: var(--accent2); font-family: var(--font-mono); margin-left: auto; }
+  .factor-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .factor-fix {
+    margin-top: 10px; background: rgba(74,222,128,0.07);
+    border-left: 3px solid var(--green);
+    padding: 8px 12px; border-radius: 0 6px 6px 0;
+    font-size: 13px; color: var(--green);
+  }
+  .factor-fix strong { display: block; margin-bottom: 2px; font-size: 11px; text-transform: uppercase; letter-spacing: .8px; }
+
+  /* ---- APPS ---- */
+  .app-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px;
+    display: flex; gap: 14px; align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .app-icon { font-size: 28px; flex-shrink: 0; }
+  .app-name { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+  .app-desc { font-size: 13px; color: var(--muted); }
+  .app-tag {
+    display: inline-block;
+    background: rgba(245,166,35,0.12); color: var(--accent);
+    font-size: 10px; padding: 2px 8px; border-radius: 20px;
+    font-family: var(--font-mono); margin-top: 6px;
+  }
+
+  /* ---- ADJUST STRATEGY ---- */
+  .strat-week { margin-bottom: 18px; }
+  .strat-week-title {
+    font-family: var(--font-display); font-size: 17px;
+    color: var(--purple); letter-spacing: 1px; margin-bottom: 8px;
+  }
+  .strat-item {
+    display: flex; gap: 10px; margin-bottom: 6px; font-size: 13px;
+  }
+  .strat-dot { color: var(--accent); margin-top: 2px; flex-shrink: 0; }
+
+  /* ---- DAILY LOG ---- */
+  .daily-log-row {
+    display: flex; gap: 8px; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    flex-wrap: wrap;
+  }
+  .log-date { font-family: var(--font-mono); font-size: 12px; color: var(--muted); width: 90px; }
+  .log-meals { display: flex; gap: 6px; flex-wrap: wrap; }
+  .log-meal-badge {
+    font-size: 10px; padding: 2px 8px; border-radius: 20px;
+    font-family: var(--font-mono);
+    background: rgba(255,255,255,0.06); color: var(--muted);
+    cursor: pointer; transition: all .2s; border: 1px solid transparent;
+    user-select: none;
+  }
+  .log-meal-badge.done { background: rgba(74,222,128,0.12); color: var(--green); border-color: rgba(74,222,128,0.2); }
+  .log-training {
+    width: 28px; height: 28px; border-radius: 6px;
+    border: 2px solid var(--border); background: none;
+    cursor: pointer; font-size: 13px; transition: all .2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .log-training.done { background: rgba(74,222,128,0.15); border-color: var(--green); }
+  .log-note-inp {
+    flex: 1; min-width: 120px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-size: 12px; padding: 5px 10px;
+    border-radius: 6px; outline: none; font-family: var(--font-body);
+  }
+  .log-note-inp:focus { border-color: var(--accent); }
+
+  /* scroll styling */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ---- TAG ---- */
+  .tag {
+    display: inline-block; font-size: 10px; font-family: var(--font-mono);
+    padding: 2px 8px; border-radius: 20px; margin-right: 4px; margin-bottom: 4px;
+  }
+  .tag-green { background: rgba(74,222,128,0.1); color: var(--green); }
+  .tag-blue { background: rgba(96,165,250,0.1); color: var(--blue); }
+  .tag-orange { background: rgba(245,166,35,0.1); color: var(--accent); }
+  .tag-red { background: rgba(232,83,74,0.1); color: var(--accent2); }
+
+  /* divider */
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  /* ---- SUMMARY BAR ---- */
+  .summary-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(17,17,24,0.97); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; gap: 32px;
+    padding: 10px 20px; z-index: 99;
+    flex-wrap: wrap;
+  }
+  .summary-stat { text-align: center; }
+  .summary-stat .v { font-family: var(--font-mono); font-size: 16px; font-weight: 600; color: var(--accent); }
+  .summary-stat .l { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; }
+
+  /* tab labels */
+  .tab-label { display: flex; gap: 8px; align-items: center; }
+  .badge { background: var(--accent2); color: #fff; border-radius: 10px; font-size: 9px; padding: 1px 5px; font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">GAIN⚡</div>
+  <button class="nav-tab active" onclick="showTab('dashboard')">Dashboard</button>
+  <button class="nav-tab" onclick="showTab('calories')">Calories & Macros</button>
+  <button class="nav-tab" onclick="showTab('meals')">Meal Plan</button>
+  <button class="nav-tab" onclick="showTab('shakes')">Shakes</button>
+  <button class="nav-tab" onclick="showTab('tracker')">Daily Tracker</button>
+  <button class="nav-tab" onclick="showTab('weight')">Weight Log</button>
+  <button class="nav-tab" onclick="showTab('strategy')">Weekly Strategy</button>
+  <button class="nav-tab" onclick="showTab('mistakes')">Mistakes</button>
+  <button class="nav-tab" onclick="showTab('factors')">Inhibitors</button>
+  <button class="nav-tab" onclick="showTab('apps')">Apps & Tools</button>
+</nav>
+
+<main>
+
+<!-- ============ DASHBOARD ============ -->
+<div class="section active" id="tab-dashboard">
+  <div class="hero">
+    <h1>60 → 67 KG</h1>
+    <p>Your personalised 8-week lean muscle gain blueprint. Track every meal, session and weigh-in here.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="val">3,000</div><div class="lbl">Daily kcal target</div></div>
+      <div class="hero-stat"><div class="val">150g</div><div class="lbl">Protein / day</div></div>
+      <div class="hero-stat"><div class="val">+7 kg</div><div class="lbl">Goal</div></div>
+      <div class="hero-stat"><div class="val">8</div><div class="lbl">Weeks</div></div>
+      <div class="hero-stat"><div class="val" id="dash-days-left">56</div><div class="lbl">Days left</div></div>
+    </div>
+  </div>
+
+  <div class="grid-4">
+    <div class="card">
+      <div class="card-title"><span class="icon">⚖️</span> Current</div>
+      <div style="font-family:var(--font-display);font-size:40px;color:var(--accent)" id="dash-current">60.0</div>
+      <div style="font-size:12px;color:var(--muted)">kg body weight</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🎯</span> Target</div>
+      <div style="font-family:var(--font-display);font-size:40px;color:var(--green)">67.0</div>
+      <div style="font-size:12px;color:var(--muted)">kg body weight</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📈</span> Gained</div>
+      <div style="font-family:var(--font-display);font-size:40px;color:var(--blue)" id="dash-gained">0.0</div>
+      <div style="font-size:12px;color:var(--muted)">kg so far</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">🔥</span> Streak</div>
+      <div style="font-family:var(--font-display);font-size:40px;color:var(--purple)" id="dash-streak">0</div>
+      <div style="font-size:12px;color:var(--muted)">days logged</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="icon">🏁</span> Goal Progress</div>
+      <div class="prog-wrap">
+        <div class="prog-label"><span>Weight Gained</span><span id="prog-kg-label">0 / 7 kg</span></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-kg" style="width:0%"></div></div>
+      </div>
+      <div class="prog-wrap">
+        <div class="prog-label"><span>Time Elapsed</span><span id="prog-time-label">0 / 56 days</span></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-time" style="width:0%;background:linear-gradient(90deg,var(--blue),var(--purple))"></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">📊</span> Today's Macros</div>
+      <div class="macro-bar-wrap">
+        <div class="macro-row"><span class="macro-label">Protein</span><span class="macro-val" style="color:var(--blue)">150g target</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%;background:var(--blue)" id="bar-pro"></div></div>
+        <div class="macro-row"><span class="macro-label">Carbs</span><span class="macro-val" style="color:var(--green)">330g target</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%;background:var(--green)" id="bar-carb"></div></div>
+        <div class="macro-row"><span class="macro-label">Fats</span><span class="macro-val" style="color:var(--accent)">83g target</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%;background:var(--accent)" id="bar-fat"></div></div>
+      </div>
+      <div style="font-size:12px;color:var(--muted)">Tick meals in Daily Tracker to update</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title"><span class="icon">✅</span> Today's Checklist</div>
+    <div id="today-checks"></div>
+  </div>
+</div>
+
+<!-- ============ CALORIES & MACROS ============ -->
+<div class="section" id="tab-calories">
+  <div class="sec-title">CALORIES & MACROS</div>
+  <div class="sec-sub">Calculated for 60 kg → 67 kg lean bulk over 8 weeks, training 5×/week</div>
+
+  <div class="grid-3">
+    <div class="card" style="border-color:var(--accent)">
+      <div class="card-title">🔥 Daily Calories</div>
+      <div style="font-family:var(--font-display);font-size:56px;color:var(--accent);line-height:1">3000</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px">kcal / day</div>
+      <div class="divider"></div>
+      <div style="font-size:13px;color:var(--muted)">TDEE (~2600) + 400 kcal surplus for lean bulk. Expect ~0.5–0.8 kg gain/week.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">💪 Protein</div>
+      <div style="font-family:var(--font-display);font-size:56px;color:var(--blue);line-height:1">150g</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px">= 600 kcal (20%)</div>
+      <div class="divider"></div>
+      <div style="font-size:13px;color:var(--muted)">2.5g/kg body weight. Optimal for muscle protein synthesis without excess.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">⚡ Carbohydrates</div>
+      <div style="font-family:var(--font-display);font-size:56px;color:var(--green);line-height:1">330g</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px">= 1320 kcal (44%)</div>
+      <div class="divider"></div>
+      <div style="font-size:13px;color:var(--muted)">Primary fuel for training. Prioritise around workout windows.</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">🥑 Fats</div>
+      <div style="font-family:var(--font-display);font-size:42px;color:var(--accent);line-height:1">83g</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px">= 747 kcal (25%)</div>
+      <div class="divider"></div>
+      <div style="font-size:13px;color:var(--muted)">Essential for testosterone, joint health, vitamin absorption. Don't cut fats.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📐 TDEE Breakdown</div>
+      <div class="check-item" style="border:none;padding:6px 0"><div style="color:var(--muted);font-size:13px;width:160px">Basal Metabolic Rate</div><div style="font-family:var(--font-mono);font-size:13px">~1750 kcal</div></div>
+      <div class="check-item" style="border:none;padding:6px 0"><div style="color:var(--muted);font-size:13px;width:160px">Activity (5×/week training)</div><div style="font-family:var(--font-mono);font-size:13px">~850 kcal</div></div>
+      <div class="check-item" style="border:none;padding:6px 0"><div style="color:var(--muted);font-size:13px;width:160px">TDEE Maintenance</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--muted)">~2600 kcal</div></div>
+      <div class="check-item" style="border:none;padding:6px 0"><div style="color:var(--muted);font-size:13px;width:160px">Lean Bulk Surplus</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--green)">+400 kcal</div></div>
+      <div class="divider" style="margin:8px 0"></div>
+      <div class="check-item" style="border:none;padding:6px 0"><div style="color:var(--text);font-size:13px;font-weight:600;width:160px">TOTAL TARGET</div><div style="font-family:var(--font-mono);font-size:13px;color:var(--accent);font-weight:700">3000 kcal</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⏱ Meal Timing Optimised</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+      <div style="background:var(--surface);border-radius:8px;padding:14px">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--accent)">6:30–7:30 AM</div>
+        <div style="font-weight:600;margin:4px 0">Breakfast</div>
+        <div style="font-size:12px;color:var(--muted)">High carb + moderate protein. Breaks overnight fast, spikes insulin for anabolism. ~600–650 kcal</div>
+      </div>
+      <div style="background:var(--surface);border-radius:8px;padding:14px">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--accent)">9:30–10:00 AM</div>
+        <div style="font-weight:600;margin:4px 0">Mid-Morning</div>
+        <div style="font-size:12px;color:var(--muted)">Protein-dominant snack to sustain muscle protein synthesis every 3–4 hrs. ~350 kcal</div>
+      </div>
+      <div style="background:var(--surface);border-radius:8px;padding:14px">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--accent)">12:00–12:30 PM</div>
+        <div style="font-weight:600;margin:4px 0">Lunch (moved up 30 min)</div>
+        <div style="font-size:12px;color:var(--muted)">Biggest carb meal of day. Gives 5+ hrs to digest before workout. ~700 kcal</div>
+      </div>
+      <div style="background:var(--surface);border-radius:8px;padding:14px">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--accent)">2:30–3:00 PM</div>
+        <div style="font-weight:600;margin:4px 0">Afternoon Snack (NEW)</div>
+        <div style="font-size:12px;color:var(--muted)">Added to hit calorie target and keep muscle synthesis going. ~350 kcal</div>
+      </div>
+      <div style="background:var(--surface);border-radius:8px;padding:14px">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--accent)">5:00–5:30 PM</div>
+        <div style="font-weight:600;margin:4px 0">Pre-Workout (moved earlier)</div>
+        <div style="font-size:12px;color:var(--muted)">Fast carbs + small protein 60–90 min before session for peak glycogen. ~350 kcal</div>
+      </div>
+      <div style="background:var(--surface);border-radius:8px;padding:14px">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--accent)">8:30–9:00 PM</div>
+        <div style="font-weight:600;margin:4px 0">Post-Workout Dinner</div>
+        <div style="font-size:12px;color:var(--muted)">High protein + moderate carb within 90 min of training. Maximises MPS recovery. ~750 kcal</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MEAL PLAN ============ -->
+<div class="section" id="tab-meals">
+  <div class="sec-title">FULL-DAY MEAL PLAN</div>
+  <div class="sec-sub">Budget-friendly, under 20 min prep. Total: ~3000 kcal | 150g protein</div>
+
+  <div style="display:flex;gap:16px;margin-bottom:12px;font-size:13px;flex-wrap:wrap">
+    <span><span style="color:var(--green);font-family:var(--font-mono)">■</span> Calories</span>
+    <span><span style="color:var(--blue);font-family:var(--font-mono)">■</span> Protein</span>
+    <span style="color:var(--muted)">Click any meal to expand</span>
+  </div>
+
+  <div id="meal-plan-container"></div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-title">📊 Daily Totals</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center">
+      <div><div style="font-family:var(--font-display);font-size:32px;color:var(--accent)">3000</div><div style="font-size:11px;color:var(--muted)">TOTAL KCAL</div></div>
+      <div><div style="font-family:var(--font-display);font-size:32px;color:var(--blue)">150g</div><div style="font-size:11px;color:var(--muted)">PROTEIN</div></div>
+      <div><div style="font-family:var(--font-display);font-size:32px;color:var(--green)">330g</div><div style="font-size:11px;color:var(--muted)">CARBS</div></div>
+      <div><div style="font-family:var(--font-display);font-size:32px;color:var(--accent)">83g</div><div style="font-size:11px;color:var(--muted)">FATS</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SHAKES ============ -->
+<div class="section" id="tab-shakes">
+  <div class="sec-title">HIGH-CALORIE SHAKES</div>
+  <div class="sec-sub">Cheap, fast (5 min), 500–800 kcal each. Use a blender or shaker.</div>
+
+  <div class="shake-card">
+    <div class="shake-title">🍌 THE BULK BANANA</div>
+    <div class="shake-kcal">~720 kcal | 35g protein | 95g carbs | 22g fat</div>
+    <div class="shake-ingredients">
+      <div class="shake-ing"><span>Whole milk</span><span style="font-family:var(--font-mono);color:var(--muted)">300 ml</span></div>
+      <div class="shake-ing"><span>Banana</span><span style="font-family:var(--font-mono);color:var(--muted)">2 medium (~200g)</span></div>
+      <div class="shake-ing"><span>Peanut butter</span><span style="font-family:var(--font-mono);color:var(--muted)">2 tbsp (30g)</span></div>
+      <div class="shake-ing"><span>Eggs (boiled, blended)</span><span style="font-family:var(--font-mono);color:var(--muted)">2 whole</span></div>
+      <div class="shake-ing"><span>Oats (raw)</span><span style="font-family:var(--font-mono);color:var(--muted)">40g</span></div>
+      <div class="shake-ing"><span>Honey</span><span style="font-family:var(--font-mono);color:var(--muted)">1 tbsp</span></div>
+    </div>
+    <div class="shake-how">✦ Blend everything 30 sec. Drink immediately. Cost: ₹35–45/serve.</div>
+  </div>
+
+  <div class="shake-card">
+    <div class="shake-title">🥛 DESI POWER SHAKE</div>
+    <div class="shake-kcal">~620 kcal | 32g protein | 75g carbs | 18g fat</div>
+    <div class="shake-ingredients">
+      <div class="shake-ing"><span>Full-fat curd (dahi)</span><span style="font-family:var(--font-mono);color:var(--muted)">200g</span></div>
+      <div class="shake-ing"><span>Whole milk</span><span style="font-family:var(--font-mono);color:var(--muted)">200 ml</span></div>
+      <div class="shake-ing"><span>Banana</span><span style="font-family:var(--font-mono);color:var(--muted)">1 large</span></div>
+      <div class="shake-ing"><span>Peanut butter</span><span style="font-family:var(--font-mono);color:var(--muted)">1.5 tbsp</span></div>
+      <div class="shake-ing"><span>Dates (seedless)</span><span style="font-family:var(--font-mono);color:var(--muted)">3 pieces (~40g)</span></div>
+      <div class="shake-ing"><span>Cardamom powder</span><span style="font-family:var(--font-mono);color:var(--muted)">pinch</span></div>
+    </div>
+    <div class="shake-how">✦ Blend all together. Add ice optional. Like a thick lassi — very filling. Cost: ₹30–40/serve.</div>
+  </div>
+
+  <div class="shake-card">
+    <div class="shake-title">🥚 EGG & OAT GAINER</div>
+    <div class="shake-kcal">~800 kcal | 45g protein | 85g carbs | 26g fat</div>
+    <div class="shake-ingredients">
+      <div class="shake-ing"><span>Whole milk</span><span style="font-family:var(--font-mono);color:var(--muted)">400 ml</span></div>
+      <div class="shake-ing"><span>Eggs (boiled)</span><span style="font-family:var(--font-mono);color:var(--muted)">3 whole</span></div>
+      <div class="shake-ing"><span>Rolled oats</span><span style="font-family:var(--font-mono);color:var(--muted)">60g</span></div>
+      <div class="shake-ing"><span>Peanut butter</span><span style="font-family:var(--font-mono);color:var(--muted)">2 tbsp</span></div>
+      <div class="shake-ing"><span>Banana</span><span style="font-family:var(--font-mono);color:var(--muted)">1 medium</span></div>
+      <div class="shake-ing"><span>Sugar or jaggery</span><span style="font-family:var(--font-mono);color:var(--muted)">1 tbsp</span></div>
+    </div>
+    <div class="shake-how">✦ Soak oats 5 min in warm milk, blend all. Thick, filling, high-cal. Cost: ₹40–55/serve.</div>
+  </div>
+</div>
+
+<!-- ============ DAILY TRACKER ============ -->
+<div class="section" id="tab-tracker">
+  <div class="sec-title">DAILY TRACKER</div>
+  <div class="sec-sub">Log every meal, workout, and note. 8 weeks = 56 days.</div>
+
+  <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+    <button class="btn" onclick="scrollToToday()">📅 Jump to Today</button>
+    <button class="btn-outline" onclick="clearAllData()">🗑 Reset All Data</button>
+    <button class="btn-outline" onclick="exportData()">📤 Export JSON</button>
+  </div>
+
+  <div style="display:grid;grid-template-columns:140px 1fr 28px 1fr;gap:6px;padding:0 0 8px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px">
+    <div>Date</div><div>Meals ticked</div><div>💪</div><div>Note</div>
+  </div>
+
+  <div id="daily-log-container"></div>
+</div>
+
+<!-- ============ WEIGHT LOG ============ -->
+<div class="section" id="tab-weight">
+  <div class="sec-title">WEIGHT LOG</div>
+  <div class="sec-sub">Weigh every morning after toilet, before eating. Same time, same conditions.</div>
+
+  <div class="weight-input-row">
+    <div class="inp-group">
+      <label class="inp-label">Date</label>
+      <input class="inp" type="date" id="weight-date">
+    </div>
+    <div class="inp-group">
+      <label class="inp-label">Weight (kg)</label>
+      <input class="inp" type="number" id="weight-val" step="0.1" placeholder="e.g. 60.5" min="40" max="150">
+    </div>
+    <button class="btn" onclick="logWeight()">LOG</button>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">📈 Weight Chart</div>
+      <canvas id="weightChart"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-title">📋 Entries</div>
+      <div class="weight-log-list" id="weight-list"></div>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-top:16px">
+    <div class="card">
+      <div class="card-title">⚖️ Starting</div>
+      <div style="font-family:var(--font-display);font-size:42px;color:var(--muted)">60.0 kg</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 Current</div>
+      <div style="font-family:var(--font-display);font-size:42px;color:var(--accent)" id="wl-current">—</div>
+    </div>
+    <div class="card">
+      <div class="card-title">✅ Change</div>
+      <div style="font-family:var(--font-display);font-size:42px;color:var(--green)" id="wl-change">+0.0 kg</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ WEEKLY STRATEGY ============ -->
+<div class="section" id="tab-strategy">
+  <div class="sec-title">WEEKLY ADJUSTMENT STRATEGY</div>
+  <div class="sec-sub">How to track progress and what to do when gains stall</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">📏 How to Track Progress</div>
+      <div class="check-item" style="border:none;padding:8px 0">
+        <div class="check-label"><strong style="color:var(--accent)">Weigh daily</strong> — same time, post-toilet, before food. Record in Weight Log tab.</div>
+      </div>
+      <div class="check-item" style="padding:8px 0">
+        <div class="check-label"><strong style="color:var(--accent)">Weekly avg</strong> — add Mon–Sun weights, divide by 7. This is your real number. Ignore daily spikes.</div>
+      </div>
+      <div class="check-item" style="padding:8px 0">
+        <div class="check-label"><strong style="color:var(--accent)">Progress photos</strong> — front/side/back every Sunday morning in same lighting.</div>
+      </div>
+      <div class="check-item" style="padding:8px 0">
+        <div class="check-label"><strong style="color:var(--accent)">Strength log</strong> — track weights lifted in gym. Progressive overload = muscle signal.</div>
+      </div>
+      <div class="check-item" style="padding:8px 0">
+        <div class="check-label"><strong style="color:var(--accent)">Tape measure</strong> — chest, arm, waist every 2 weeks.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🚦 Decision Framework</div>
+      <div style="background:rgba(74,222,128,0.07);border-radius:8px;padding:12px;margin-bottom:10px;border-left:3px solid var(--green)">
+        <div style="font-weight:600;color:var(--green);margin-bottom:4px">✅ On Track: +0.3–0.6 kg/week avg</div>
+        <div style="font-size:13px;color:var(--muted)">Keep everything the same. Don't change a working plan.</div>
+      </div>
+      <div style="background:rgba(245,166,35,0.07);border-radius:8px;padding:12px;margin-bottom:10px;border-left:3px solid var(--accent)">
+        <div style="font-weight:600;color:var(--accent);margin-bottom:4px">⚠️ Slow: +0.1–0.2 kg/week</div>
+        <div style="font-size:13px;color:var(--muted)">Add 150–200 kcal/day (extra shake, extra rice portion). Recheck consistency of meals.</div>
+      </div>
+      <div style="background:rgba(232,83,74,0.07);border-radius:8px;padding:12px;border-left:3px solid var(--accent2)">
+        <div style="font-weight:600;color:var(--accent2);margin-bottom:4px">🔴 Stalled: No change / loss</div>
+        <div style="font-size:13px;color:var(--muted)">Add 300 kcal/day. Check if actually eating consistently. Add a full shake daily. Verify sleep (8hr).</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="weekly-strategy-list"></div>
+</div>
+
+<!-- ============ COMMON MISTAKES ============ -->
+<div class="section" id="tab-mistakes">
+  <div class="sec-title">COMMON BEGINNER MISTAKES</div>
+  <div class="sec-sub">Know these. Avoid them from day 1.</div>
+  <div id="mistakes-container"></div>
+</div>
+
+<!-- ============ INHIBITORS ============ -->
+<div class="section" id="tab-factors">
+  <div class="sec-title">MUSCLE GAIN INHIBITORS</div>
+  <div class="sec-sub">Factors that kill gains even when diet is correct. Fix all of these.</div>
+  <div id="factors-container"></div>
+</div>
+
+<!-- ============ APPS ============ -->
+<div class="section" id="tab-apps">
+  <div class="sec-title">APPS & TOOLS</div>
+  <div class="sec-sub">The only tools you need. Keep it simple.</div>
+  <div id="apps-container"></div>
+</div>
+
+</main>
+
+<!-- Summary Bar -->
+<div class="summary-bar">
+  <div class="summary-stat"><div class="v" id="sb-weight">60.0 kg</div><div class="l">Current Weight</div></div>
+  <div class="summary-stat"><div class="v" id="sb-gained">+0.0</div><div class="l">kg Gained</div></div>
+  <div class="summary-stat"><div class="v" id="sb-days">0/56</div><div class="l">Days Logged</div></div>
+  <div class="summary-stat"><div class="v" id="sb-streak">0🔥</div><div class="l">Streak</div></div>
+  <div class="summary-stat"><div class="v" id="sb-target">67.0 kg</div><div class="l">Target</div></div>
+</div>
+
+<script>
+// ======= DATA =======
+const START_DATE = (() => {
+  let d = localStorage.getItem('gain_start_date');
+  if (!d) {
+    d = new Date().toISOString().slice(0,10);
+    localStorage.setItem('gain_start_date', d);
+  }
+  return d;
+})();
+const TOTAL_DAYS = 56;
+const START_WEIGHT = 60.0;
+const TARGET_WEIGHT = 67.0;
+
+function getDayIndex(dateStr) {
+  const s = new Date(START_DATE);
+  const d = new Date(dateStr);
+  return Math.floor((d - s) / 86400000);
+}
+function getDateStr(dayIndex) {
+  const d = new Date(START_DATE);
+  d.setDate(d.getDate() + dayIndex);
+  return d.toISOString().slice(0,10);
+}
+function todayStr() { return new Date().toISOString().slice(0,10); }
+function fmtDate(str) {
+  const d = new Date(str);
+  return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'});
+}
+
+// ======= STORAGE =======
+function load(key, def) {
+  try { const v = localStorage.getItem('gain_'+key); return v ? JSON.parse(v) : def; } catch { return def; }
+}
+function save(key, val) { localStorage.setItem('gain_'+key, JSON.stringify(val)); }
+
+let weightLog = load('weight', []);       // [{date,val}]
+let dailyLog  = load('daily', {});        // {date: {meals:[bool*6], trained:bool, note:str}}
+let todayCheck = load('today_check', {}); // {date: {items:[bool*6]}}
+
+// ======= MEAL PLAN DATA =======
+const MEALS = [
+  {
+    time: '6:30–7:30 AM',
+    name: 'Breakfast',
+    kcal: 620,
+    protein: 28,
+    items: [
+      {name:'Whole eggs', qty:'3 whole', kcal:210, protein:18},
+      {name:'Whole wheat bread / roti', qty:'2 roti or 2 bread slices', kcal:160, protein:5},
+      {name:'Whole milk', qty:'250 ml', kcal:150, protein:8},
+      {name:'Banana', qty:'1 medium', kcal:100, protein:1},
+    ]
+  },
+  {
+    time: '9:30–10:00 AM',
+    name: 'Mid-Morning',
+    kcal: 340,
+    protein: 20,
+    items: [
+      {name:'Peanut butter', qty:'2 tbsp (30g)', kcal:180, protein:7},
+      {name:'Whole wheat bread', qty:'2 slices', kcal:160, protein:5},
+      {name:'Boiled egg', qty:'1 whole', kcal:70, protein:6},
+      {name:'Green tea / water', qty:'1 cup', kcal:0, protein:0},
+    ]
+  },
+  {
+    time: '12:00–12:30 PM',
+    name: 'Lunch (moved up)',
+    kcal: 700,
+    protein: 35,
+    items: [
+      {name:'White rice', qty:'200g cooked (~80g dry)', kcal:260, protein:5},
+      {name:'Dal (masoor/moong)', qty:'150g cooked', kcal:130, protein:9},
+      {name:'Chicken curry / paneer (100g)', qty:'100g', kcal:200, protein:18},
+      {name:'Curd (dahi)', qty:'100g', kcal:60, protein:3},
+      {name:'Sabzi (any veg)', qty:'1 katori', kcal:50, protein:2},
+    ]
+  },
+  {
+    time: '2:30–3:00 PM',
+    name: 'Afternoon Snack (NEW)',
+    kcal: 340,
+    protein: 18,
+    items: [
+      {name:'Full-fat curd', qty:'200g', kcal:120, protein:7},
+      {name:'Banana', qty:'1 large', kcal:120, protein:1},
+      {name:'Peanut butter', qty:'1 tbsp', kcal:90, protein:4},
+      {name:'Handful roasted peanuts', qty:'20g', kcal:110, protein:5},
+    ]
+  },
+  {
+    time: '5:00–5:30 PM',
+    name: 'Pre-Workout',
+    kcal: 360,
+    protein: 14,
+    items: [
+      {name:'White rice / roti', qty:'150g rice cooked / 2 roti', kcal:200, protein:4},
+      {name:'Banana', qty:'1 medium', kcal:90, protein:1},
+      {name:'Boiled eggs', qty:'2 whole', kcal:140, protein:12},
+      {name:'Water', qty:'500 ml', kcal:0, protein:0},
+    ]
+  },
+  {
+    time: '8:30–9:00 PM',
+    name: 'Post-Workout Dinner',
+    kcal: 740,
+    protein: 40,
+    items: [
+      {name:'Chicken breast / paneer / eggs', qty:'150g chicken or 150g paneer or 4 eggs', kcal:250, protein:30},
+      {name:'Rice / roti', qty:'200g rice or 3 roti', kcal:260, protein:5},
+      {name:'Dal or sabzi', qty:'1 katori', kcal:100, protein:4},
+      {name:'Whole milk', qty:'250 ml', kcal:150, protein:8},
+    ]
+  }
+];
+const MEAL_NAMES = MEALS.map(m=>m.name.split('(')[0].trim());
+
+// ======= MISTAKES DATA =======
+const MISTAKES = [
+  {icon:'📉',title:'Not eating enough calories',impact:'#1 cause of no gains',body:'Most beginners UNDER-eat and don\'t realise it. "I eat a lot" usually means 2000 kcal. You need 3000 consistently, every single day including rest days.',fix:'Weigh food for first 2 weeks. Use MyFitnessPal to count. Feeling full doesn\'t mean you hit the target.'},
+  {icon:'⏰',title:'Inconsistent meal timing',impact:'High impact',body:'Skipping meals or eating 2 big meals instead of 6 spaced meals limits muscle protein synthesis. Protein has a ceiling per meal (~40g is absorbed well).',fix:'Set phone alarms for each meal. Prep food in advance. Never skip a meal — have a shake if short on time.'},
+  {icon:'🏋️',title:'No progressive overload',impact:'#2 cause of plateau',body:'Going to gym and lifting same weights week after week gives zero signal to grow. Muscles need progressive challenge.',fix:'Every week, add 2.5–5 kg or 1–2 reps to at least one exercise. Log your lifts in a notebook.'},
+  {icon:'💊',title:'Focusing on supplements over food',impact:'Medium',body:'Beginners waste money on whey, creatine, BCAAs before food basics are solid. Supplements are 5% of results.',fix:'Get food right first. Only add creatine monohydrate (5g/day, cheap) once diet is consistent. Skip everything else.'},
+  {icon:'🔄',title:'Changing programme every 2 weeks',impact:'High',body:'Programme-hopping prevents progressive overload. You need 8–12 weeks on a single programme to see measurable results.',fix:'Pick one programme (PPL, 5×5, upper-lower) and run it for entire 8 weeks without changing.'},
+  {icon:'💧',title:'Under-hydrating',impact:'Medium',body:'Dehydration reduces strength by up to 10%, impairs digestion and nutrient absorption. You\'ll look and feel flat.',fix:'Drink 3.5–4 litres daily. Carry a 1L bottle. Urine should be pale yellow by midday.'},
+  {icon:'📸',title:'Only tracking scale weight',impact:'Medium',body:'Scale weight fluctuates 1–2 kg daily due to water, glycogen, food volume. One reading means nothing.',fix:'Track weekly averages. Also track: strength gains, progress photos, measurements, how clothes fit.'},
+  {icon:'😴',title:'Neglecting sleep',impact:'CRITICAL',body:'Growth hormone is released during deep sleep (10 PM–2 AM). Poor sleep = no recovery = no growth, even with perfect diet.',fix:'Sleep 7.5–8.5 hours. Sleep before midnight. No phone 30 min before bed. Dark, cool room.'},
+];
+
+// ======= INHIBITORS DATA =======
+const FACTORS = [
+  {icon:'😴',title:'Sleep Quality & Duration',impact:'CRITICAL',body:'GH (growth hormone) peaks during slow-wave sleep. Less than 7 hrs cuts MPS (muscle protein synthesis) by ~25%. Sleep quality matters as much as quantity.',fix:'Target 7.5–8.5 hrs. Sleep by 10:30 PM. Avoid caffeine after 3 PM. No screens 30 min before bed. Use a fan or AC for cool room temperature.'},
+  {icon:'🧠',title:'Chronic Stress (Cortisol)',impact:'HIGH',body:'High cortisol is catabolic — it breaks down muscle tissue. Stress from work, relationships, or overtraining elevates baseline cortisol and blocks anabolic pathways.',fix:'10–15 min daily: walk, breathing exercises, or journaling. Limit news/doom-scrolling. Protect sleep as a stress modulator.'},
+  {icon:'📉',title:'Insufficient Progressive Overload',impact:'CRITICAL',body:'Without increasing stimulus (weight, reps, sets) weekly, muscles have no reason to adapt and grow. The "growth signal" comes from mechanical tension.',fix:'Keep a training log (phone notes or notebook). Try to beat last week\'s performance in 1+ exercise every session. Even +1 rep counts.'},
+  {icon:'📊',title:'Under-eating on Rest Days',impact:'HIGH',body:'Many people eat well on training days but undereat on rest days. Recovery and muscle building happen on rest days — they need fuel too.',fix:'Eat the same 3000 kcal on rest days. The only change: slightly reduce pre/post workout meals, add a shake or snack instead.'},
+  {icon:'⏱',title:'Skipping Post-Workout Nutrition',impact:'HIGH',body:'The 90-min post-workout window has elevated insulin sensitivity and mTOR activation. Missing protein in this window slows recovery by hours.',fix:'Have post-workout meal (40g+ protein) within 60–90 min of finishing session. If dinner is late, have a quick boiled egg + milk shake immediately after.'},
+  {icon:'🫁',title:'Overtraining / Insufficient Recovery',impact:'MEDIUM-HIGH',body:'Training the same muscles every day without 48-hr recovery leads to breakdown, not growth. 5 days/week is fine — if split intelligently (not same muscles daily).',fix:'Use a structured split: PPL (Push/Pull/Legs) or Upper-Lower. Never train the same muscle group on consecutive days.'},
+  {icon:'💧',title:'Dehydration',impact:'MEDIUM',body:'Muscle is ~75% water. Even 2% dehydration reduces strength by 8–10% and slows protein synthesis. Creatine also requires high water intake.',fix:'Drink 3.5–4L daily. Add electrolytes if sweating heavily. Pre-workout hydration is especially critical.'},
+  {icon:'🦠',title:'Poor Gut Health / Digestion',impact:'MEDIUM',body:'If you\'re not digesting and absorbing nutrients well, it doesn\'t matter how much you eat. Bloating, gas, inconsistent stool = suboptimal absorption.',fix:'Eat 100–150g curd/dahi daily (natural probiotics). Don\'t eat huge meals — split into 6 meals. Chew food well. Avoid junk/processed foods that irritate gut lining.'},
+  {icon:'🏃',title:'Excessive Cardio',impact:'MEDIUM',body:'Cardio over 30–40 min daily creates caloric deficit and raises cortisol — both antagonistic to bulking.',fix:'Limit cardio to 2×/week, 20–25 min light-moderate (walk, cycling). Focus energy on lifting. All movement burns calories — account for it.'},
+  {icon:'🔁',title:'Training Volume Extremes',impact:'MEDIUM',body:'Too low volume (< 10 sets/muscle/week) = insufficient stimulus. Too high (> 25 sets/muscle/week) = junk volume, overtraining, no extra gain.',fix:'Target 12–18 sets per muscle group per week. 3–4 exercises × 3–4 sets each. Quality over quantity — train hard, not long.'},
+  {icon:'🌿',title:'Micronutrient Deficiencies',impact:'MEDIUM',body:'Iron, Vitamin D, B12, zinc, and magnesium are commonly deficient in Indian vegetarian/semi-veg diets. Deficiencies limit energy, hormones, and recovery.',fix:'Get a basic blood panel every 3 months. Eat eggs (B12, D), paneer (calcium), banana (potassium), curd (calcium). Consider Vitamin D3+K2 supplement if sunlight exposure is low.'},
+  {icon:'🍺',title:'Alcohol & Junk Food',impact:'HIGH',body:'Alcohol directly suppresses testosterone and GH for 24–48 hrs after consumption. Even 2–3 drinks weekly have measurable hormonal impact in a bulk phase.',fix:'Eliminate alcohol for 8 weeks. Minimise processed food — replaces nutrient-dense whole foods with empty calories.'},
+];
+
+// ======= APPS DATA =======
+const APPS = [
+  {icon:'📱',name:'MyFitnessPal (Free)',desc:'Track calories and macros. Huge Indian food database. Scan barcodes. Set custom goals. Use consistently for first 4 weeks until you know portion sizes by heart.',tags:['Calorie tracking','Macro tracking']},
+  {icon:'📊',name:'HealthifyMe (Free)',desc:'India-specific calorie tracker with roti, dal, sabzi already in database. Better for Indian foods than MyFitnessPal. AI coach for premium.',tags:['Indian foods','Free version solid']},
+  {icon:'⚖️',name:'Happy Scale / Libra (Free)',desc:'Weight tracking app that smooths daily fluctuations and shows your real trend. Takes water weight variance out of the picture. Essential for not panicking at daily fluctuations.',tags:['Weight trend','iOS/Android']},
+  {icon:'💪',name:'Strong / Hevy (Free)',desc:'Gym workout logger. Record sets, reps, weights. Track progressive overload automatically. Shows PRs. Essential for ensuring you\'re actually progressing.',tags:['Training log','Progressive overload']},
+  {icon:'🌙',name:'Sleep Cycle (Free)',desc:'Tracks sleep quality and duration. Wakes you at optimal sleep phase. Shows trends. Non-negotiable if sleep is inconsistent.',tags:['Sleep tracking']},
+  {icon:'📷',name:'Progress Camera (Free)',desc:'Takes progress photos at same time of day from same angle automatically. Tracks body composition changes that the scale can\'t show.',tags:['Progress photos']},
+  {icon:'📝',name:'Google Sheets (Free)',desc:'Build your own simple tracker: daily weight, weekly averages, gym lifts, meal checkboxes. Simple, visual, yours. Export anytime.',tags:['Custom tracking','Free forever']},
+];
+
+// ======= WEEKLY STRATEGY DATA =======
+const WEEKS = [
+  {w:'Week 1–2',title:'ESTABLISH BASELINE',items:['Weigh yourself daily, same time, post-toilet. Log in Weight Log tab.','Track all food in MyFitnessPal — don\'t trust guesses.','Aim to hit 3000 kcal and 150g protein every day. Focus on consistency over perfection.','Do NOT increase calories yet — establish habits first.','Take starting photos and measurements (chest, arm, waist).']},
+  {w:'Week 3',title:'FIRST ADJUSTMENT POINT',items:['Calculate weekly average weight (add 7 days, divide by 7). Compare to start.','If avg gain < 0.2 kg: add 200 kcal/day (extra shake or extra roti + dal). ','If avg gain > 0.7 kg: reduce by 100 kcal (slightly smaller dinner) to keep fat gain minimal.','Check training log: are you beating last week\'s numbers? If not, reduce sets, fix technique.']},
+  {w:'Week 4',title:'MONTH-1 CHECK-IN',items:['Compare week 4 avg weight vs week 1 avg. Should be +1.5–2.5 kg total.','New photos + measurements. Muscle gains often visible here before scale moves.','Review sleep and stress. If not sleeping 7.5+ hrs, this is your biggest fix. ','Recalibrate TDEE — as you gain weight, maintenance calories go up. Adjust targets.']},
+  {w:'Week 5–6',title:'INTENSIFY TRAINING',items:['Body is now adapted. Increase training volume by 1 set per exercise.','Add 5 kg to compound lifts if form is solid.','Maintain same caloric target. Resist urge to bulk hard — lean gains only.','If plateau continues after adding 200 kcal: check if skipping meals or underestimating portions.']},
+  {w:'Week 7',title:'SECOND ADJUSTMENT POINT',items:['Recalculate TDEE for new body weight. Every kg gained raises TDEE by ~15–20 kcal.','If total gain is behind by >1 kg: add 300 kcal/day for final 2 weeks (extra shake).','If on track: maintain. Trust the process.','Deload option: reduce weight by 40% for 4–5 sessions. Joints recover, performance rebounds.']},
+  {w:'Week 8',title:'FINAL WEEK & FUTURE PLANNING',items:['Final weigh-in: full week average vs start average. This is your real number.','Final photos + measurements. Compare to Week 1 — visual changes are more motivating than scale.','Plan next 8-week cycle: if gained 5+ kg, continue same approach. If < 4 kg, audit sleep, calories, and training log for missed sessions.','Celebrate consistency, not just numbers. 8 weeks of consistent training is a real achievement.']},
+];
+
+// ======= RENDER FUNCTIONS =======
+
+function renderMealPlan() {
+  const c = document.getElementById('meal-plan-container');
+  c.innerHTML = MEALS.map((m,i) => `
+    <div class="meal-row">
+      <div class="meal-header" onclick="toggleMeal(${i})">
+        <div class="meal-time">${m.time}</div>
+        <div class="meal-name">${m.name}</div>
+        <div class="meal-cal">${m.kcal} kcal</div>
+        <div class="meal-pro">${m.protein}g pro</div>
+      </div>
+      <div class="meal-body" id="meal-body-${i}">
+        <div style="display:grid;grid-template-columns:1fr 80px 60px 50px;gap:4px;padding:10px 0 6px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px">
+          <div>Food</div><div style="text-align:right">Quantity</div><div style="text-align:right">kcal</div><div style="text-align:right">pro</div>
+        </div>
+        <div class="meal-items">
+          ${m.items.map(it=>`
+            <div class="meal-item">
+              <div class="meal-item-name">${it.name}</div>
+              <div class="meal-item-qty">${it.qty}</div>
+              <div class="meal-item-cal">${it.kcal}</div>
+              <div class="meal-item-pro">${it.protein}g</div>
+            </div>`).join('')}
+        </div>
+        <div style="display:flex;gap:16px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px">
+          <span style="color:var(--green);font-family:var(--font-mono)">Total: ${m.kcal} kcal</span>
+          <span style="color:var(--blue);font-family:var(--font-mono)">${m.protein}g protein</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleMeal(i) {
+  const b = document.getElementById('meal-body-'+i);
+  b.classList.toggle('open');
+}
+
+function renderDailyLog() {
+  const c = document.getElementById('daily-log-container');
+  let html = '';
+  for (let d=0; d<TOTAL_DAYS; d++) {
+    const dateStr = getDateStr(d);
+    const log = dailyLog[dateStr] || {meals:Array(6).fill(false), trained:false, note:''};
+    const isToday = dateStr === todayStr();
+    const dayOfWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date(dateStr).getDay()];
+    html += `<div class="daily-log-row" id="logrow-${dateStr}" ${isToday?'style="background:rgba(245,166,35,0.04);border-radius:8px;padding:10px 8px;"':''}>
+      <div class="log-date">${fmtDate(dateStr)}<br><span style="color:var(--purple);font-size:10px">${dayOfWeek}</span>${isToday?'<span style="color:var(--accent);font-size:10px"> ◀ TODAY</span>':''}</div>
+      <div class="log-meals">
+        ${MEAL_NAMES.map((mn,mi)=>`<div class="log-meal-badge${log.meals[mi]?' done':''}" onclick="toggleMealLog('${dateStr}',${mi})">${mn.split(' ')[0]}</div>`).join('')}
+      </div>
+      <button class="log-training${log.trained?' done':''}" onclick="toggleTraining('${dateStr}')" title="Training done?">💪</button>
+      <input class="log-note-inp" placeholder="Note…" value="${log.note||''}" onblur="saveNote('${dateStr}',this.value)" style="flex:1;min-width:100px">
+    </div>`;
+  }
+  c.innerHTML = html;
+}
+
+function toggleMealLog(dateStr, mealIdx) {
+  if (!dailyLog[dateStr]) dailyLog[dateStr] = {meals:Array(6).fill(false), trained:false, note:''};
+  dailyLog[dateStr].meals[mealIdx] = !dailyLog[dateStr].meals[mealIdx];
+  save('daily', dailyLog);
+  renderDailyLog();
+  updateDashboard();
+}
+
+function toggleTraining(dateStr) {
+  if (!dailyLog[dateStr]) dailyLog[dateStr] = {meals:Array(6).fill(false), trained:false, note:''};
+  dailyLog[dateStr].trained = !dailyLog[dateStr].trained;
+  save('daily', dailyLog);
+  renderDailyLog();
+  updateDashboard();
+}
+
+function saveNote(dateStr, val) {
+  if (!dailyLog[dateStr]) dailyLog[dateStr] = {meals:Array(6).fill(false), trained:false, note:''};
+  dailyLog[dateStr].note = val;
+  save('daily', dailyLog);
+}
+
+function scrollToToday() {
+  const el = document.getElementById('logrow-'+todayStr());
+  if (el) el.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function renderWeightLog() {
+  const list = document.getElementById('weight-list');
+  if (!weightLog.length) { list.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:12px 0">No entries yet. Log your weight above.</div>'; return; }
+  const sorted = [...weightLog].sort((a,b)=>b.date.localeCompare(a.date));
+  list.innerHTML = sorted.map((e,i)=>{
+    const prev = sorted[i+1];
+    let diff = '';
+    if (prev) {
+      const d = (e.val - prev.val).toFixed(1);
+      diff = `<span class="weight-diff ${d>=0?'up':'dn'}">${d>=0?'+':''}${d} kg</span>`;
+    }
+    return `<div class="weight-entry">
+      <span class="weight-date">${fmtDate(e.date)}</span>
+      <span class="weight-val">${parseFloat(e.val).toFixed(1)} kg</span>
+      ${diff}
+      <button class="btn-danger" onclick="deleteWeight('${e.date}')">✕</button>
+    </div>`;
+  }).join('');
+
+  const latest = sorted[0];
+  document.getElementById('wl-current').textContent = parseFloat(latest.val).toFixed(1)+' kg';
+  const change = (latest.val - START_WEIGHT).toFixed(1);
+  const el = document.getElementById('wl-change');
+  el.textContent = (change>=0?'+':'')+change+' kg';
+  el.style.color = change>=0?'var(--green)':'var(--accent2)';
+
+  drawWeightChart();
+}
+
+function logWeight() {
+  const date = document.getElementById('weight-date').value;
+  const val = parseFloat(document.getElementById('weight-val').value);
+  if (!date || isNaN(val)) return;
+  weightLog = weightLog.filter(e=>e.date !== date);
+  weightLog.push({date, val});
+  weightLog.sort((a,b)=>a.date.localeCompare(b.date));
+  save('weight', weightLog);
+  renderWeightLog();
+  updateDashboard();
+}
+
+function deleteWeight(date) {
+  weightLog = weightLog.filter(e=>e.date !== date);
+  save('weight', weightLog);
+  renderWeightLog();
+  updateDashboard();
+}
+
+function drawWeightChart() {
+  const canvas = document.getElementById('weightChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.offsetWidth, H = canvas.offsetHeight;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0,0,W,H);
+
+  if (weightLog.length < 2) {
+    ctx.fillStyle = '#6b6b80';
+    ctx.font = '13px DM Sans';
+    ctx.textAlign = 'center';
+    ctx.fillText('Add at least 2 entries to see chart', W/2, H/2);
+    return;
+  }
+
+  const sorted = [...weightLog].sort((a,b)=>a.date.localeCompare(b.date));
+  const vals = sorted.map(e=>e.val);
+  const minV = Math.min(...vals, START_WEIGHT) - 0.5;
+  const maxV = Math.max(...vals, TARGET_WEIGHT) + 0.5;
+  const pad = {l:40,r:20,t:20,b:30};
+
+  const xScale = (i) => pad.l + (i/(sorted.length-1)) * (W - pad.l - pad.r);
+  const yScale = (v) => pad.t + (1 - (v-minV)/(maxV-minV)) * (H - pad.t - pad.b);
+
+  // target line
+  ctx.strokeStyle = 'rgba(74,222,128,0.3)';
+  ctx.setLineDash([5,5]);
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(pad.l, yScale(TARGET_WEIGHT));
+  ctx.lineTo(W-pad.r, yScale(TARGET_WEIGHT));
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = 'rgba(74,222,128,0.6)';
+  ctx.font = '10px JetBrains Mono';
+  ctx.fillText('67 kg', W-pad.r-24, yScale(TARGET_WEIGHT)-4);
+
+  // line
+  ctx.strokeStyle = '#f5a623';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  sorted.forEach((e,i) => {
+    const x = xScale(i), y = yScale(e.val);
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+
+  // dots
+  sorted.forEach((e,i) => {
+    const x = xScale(i), y = yScale(e.val);
+    ctx.fillStyle = '#f5a623';
+    ctx.beginPath(); ctx.arc(x,y,3,0,Math.PI*2); ctx.fill();
+  });
+
+  // y labels
+  ctx.fillStyle = '#6b6b80';
+  ctx.font = '10px JetBrains Mono';
+  ctx.textAlign = 'right';
+  [minV+0.5, (minV+maxV)/2, maxV-0.5].forEach(v=>{
+    ctx.fillText(v.toFixed(1), pad.l-4, yScale(v)+4);
+  });
+}
+
+function renderMistakes() {
+  document.getElementById('mistakes-container').innerHTML = MISTAKES.map(m=>`
+    <div class="factor-card">
+      <div class="factor-header">
+        <span class="factor-icon">${m.icon}</span>
+        <span class="factor-title">${m.title}</span>
+        <span class="factor-impact">${m.impact}</span>
+      </div>
+      <div class="factor-body">${m.body}</div>
+      <div class="factor-fix"><strong>✅ FIX</strong>${m.fix}</div>
+    </div>`).join('');
+}
+
+function renderFactors() {
+  document.getElementById('factors-container').innerHTML = FACTORS.map(f=>`
+    <div class="factor-card">
+      <div class="factor-header">
+        <span class="factor-icon">${f.icon}</span>
+        <span class="factor-title">${f.title}</span>
+        <span class="factor-impact">${f.impact}</span>
+      </div>
+      <div class="factor-body">${f.body}</div>
+      <div class="factor-fix"><strong>✅ ACTIONABLE FIX</strong>${f.fix}</div>
+    </div>`).join('');
+}
+
+function renderApps() {
+  document.getElementById('apps-container').innerHTML = APPS.map(a=>`
+    <div class="app-card">
+      <div class="app-icon">${a.icon}</div>
+      <div>
+        <div class="app-name">${a.name}</div>
+        <div class="app-desc">${a.desc}</div>
+        <div>${a.tags.map(t=>`<span class="app-tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderWeeklyStrategy() {
+  document.getElementById('weekly-strategy-list').innerHTML = WEEKS.map(w=>`
+    <div class="strat-week">
+      <div class="strat-week-title">${w.w}: ${w.title}</div>
+      ${w.items.map(it=>`<div class="strat-item"><span class="strat-dot">▶</span><span>${it}</span></div>`).join('')}
+    </div>`).join('');
+}
+
+function renderTodayChecklist() {
+  const checks = [
+    'Hit 3000 kcal today',
+    'Hit 150g protein today',
+    'Drank 3.5L+ water',
+    'Completed workout (or planned rest day)',
+    'Slept 7.5+ hrs last night',
+    'Logged weight this morning',
+  ];
+  const date = todayStr();
+  const state = load('today_checks_'+date, Array(checks.length).fill(false));
+
+  document.getElementById('today-checks').innerHTML = checks.map((c,i)=>`
+    <div class="check-item">
+      <div class="check-box${state[i]?' done':''}" onclick="toggleCheck(${i})"></div>
+      <div class="check-label${state[i]?' done':''}">${c}</div>
+    </div>`).join('');
+}
+
+function toggleCheck(i) {
+  const date = todayStr();
+  const checks = [
+    'Hit 3000 kcal today','Hit 150g protein today','Drank 3.5L+ water',
+    'Completed workout (or planned rest day)','Slept 7.5+ hrs last night','Logged weight this morning',
+  ];
+  const state = load('today_checks_'+date, Array(checks.length).fill(false));
+  state[i] = !state[i];
+  save('today_checks_'+date, state);
+  renderTodayChecklist();
+}
+
+// ======= DASHBOARD UPDATE =======
+function updateDashboard() {
+  // weight
+  const latest = weightLog.length ? weightLog[weightLog.length-1].val : START_WEIGHT;
+  const gained = (latest - START_WEIGHT).toFixed(1);
+  document.getElementById('dash-current').textContent = parseFloat(latest).toFixed(1);
+  document.getElementById('dash-gained').textContent = (gained>=0?'+':'')+gained;
+  document.getElementById('sb-weight').textContent = parseFloat(latest).toFixed(1)+' kg';
+  document.getElementById('sb-gained').textContent = (gained>=0?'+':'')+gained;
+  document.getElementById('wl-current') && (document.getElementById('wl-current').textContent = parseFloat(latest).toFixed(1)+' kg');
+
+  // progress bars
+  const kgPct = Math.min(100, Math.max(0, (gained / 7) * 100));
+  document.getElementById('prog-kg').style.width = kgPct+'%';
+  document.getElementById('prog-kg-label').textContent = Math.max(0,gained)+' / 7 kg';
+
+  const startD = new Date(START_DATE);
+  const todayD = new Date();
+  const elapsed = Math.min(TOTAL_DAYS, Math.floor((todayD-startD)/86400000));
+  const timePct = Math.min(100,(elapsed/TOTAL_DAYS)*100);
+  document.getElementById('prog-time').style.width = timePct+'%';
+  document.getElementById('prog-time-label').textContent = elapsed+' / 56 days';
+  document.getElementById('dash-days-left').textContent = Math.max(0, TOTAL_DAYS-elapsed);
+
+  // streak
+  let streak = 0;
+  for (let d=0; d<TOTAL_DAYS; d++) {
+    const ds = getDateStr(d);
+    if (dailyLog[ds] && dailyLog[ds].meals.some(Boolean)) streak++;
+    else if (ds < todayStr()) streak = 0;
+  }
+  document.getElementById('dash-streak').textContent = streak;
+  document.getElementById('sb-streak').textContent = streak+'🔥';
+
+  // count logged days
+  let loggedDays = Object.keys(dailyLog).filter(d=>dailyLog[d].meals.some(Boolean)).length;
+  document.getElementById('sb-days').textContent = loggedDays+'/56';
+
+  // today meal macros
+  const todayLog = dailyLog[todayStr()];
+  let todayKcal=0, todayPro=0;
+  if (todayLog) {
+    MEALS.forEach((m,i)=>{ if(todayLog.meals[i]) { todayKcal+=m.kcal; todayPro+=m.protein; }});
+  }
+  document.getElementById('bar-pro').style.width = Math.min(100,(todayPro/150)*100)+'%';
+  document.getElementById('bar-carb').style.width = Math.min(100,(todayKcal/3000)*100)+'%';
+  document.getElementById('bar-fat').style.width = Math.min(100,(todayKcal/3000)*100)+'%';
+}
+
+// ======= TAB SWITCHING =======
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (id==='weight') { setTimeout(drawWeightChart, 100); }
+}
+
+// ======= UTILS =======
+function clearAllData() {
+  if (!confirm('Reset ALL progress data? This cannot be undone.')) return;
+  ['weight','daily'].forEach(k=>localStorage.removeItem('gain_'+k));
+  weightLog = []; dailyLog = {};
+  renderDailyLog(); renderWeightLog(); updateDashboard();
+}
+
+function exportData() {
+  const data = { startDate: START_DATE, weightLog, dailyLog, exportedAt: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'gain_progress_'+todayStr()+'.json';
+  a.click();
+}
+
+// ======= INIT =======
+window.addEventListener('DOMContentLoaded', () => {
+  // Set today's date in weight input
+  document.getElementById('weight-date').value = todayStr();
+
+  renderMealPlan();
+  renderDailyLog();
+  renderWeightLog();
+  renderMistakes();
+  renderFactors();
+  renderApps();
+  renderWeeklyStrategy();
+  renderTodayChecklist();
+  updateDashboard();
+});
+
+window.addEventListener('resize', () => {
+  if (document.getElementById('tab-weight').classList.contains('active')) drawWeightChart();
+});
+</script>
+</body>
+</html>
